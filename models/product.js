@@ -8,3 +8,5 @@ class Product{
     this.description=description
   }
 }
+
+exports.Product=Product;

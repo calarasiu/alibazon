@@ -9,3 +9,5 @@ class Subcategory{
     this.products=products
   }
 }
+
+exports.Subcategory=Subcategory;

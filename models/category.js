@@ -9,3 +9,5 @@ class Category{
       this.parent_category=parent_category
   }
 }
+
+exports.Category=Category;
