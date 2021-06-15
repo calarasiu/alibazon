@@ -1,0 +1,15 @@
+.header {
+  border-bottom: 1px solid black;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-between;
+
+}
+.categories>a {
+  padding: 50px;
+}

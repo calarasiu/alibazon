@@ -10,4 +10,4 @@ class Subcategory{
   }
 }
 
-exports.Subcategory=Subcategory;
+module.exports=Subcategory;

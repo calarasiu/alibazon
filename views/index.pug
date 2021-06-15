@@ -1,5 +1,9 @@
 extends layout
 
 block content
-  h1= message 
-  p Welcome to #{message}
+
+  h2=genderCategory.title
+  p=genderCategory.description 
+    each subcategory in genderCategory.subcategories
+      h3=subcategory.name
+      p=subcategory.page_description
