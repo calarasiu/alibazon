@@ -4,6 +4,7 @@ block content
 
   h2=genderCategory.title
   p=genderCategory.description 
-    each subcategory in genderCategory.subcategories
-      h3=subcategory.name
-      p=subcategory.page_description
+  each subcategory in genderCategory.subcategories  
+    a(href=`/categories/${subcategory.parent_category_id}/${subcategory.name.toLowerCase()}`)=subcategory.name
+    p=subcategory.page_description
+  

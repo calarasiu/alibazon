@@ -2,51 +2,33 @@ const api = require('../api');
 
 const axios = require('axios');
 
-const Category = require('../models/category');
+const Subcategory = require('../models/subcategory');
 
-exports.getCategories=(req, res)=>{
-  const defaultCategory = 'womens'
-  res.redirect(`/categories/${defaultCategory}`)
-}
+exports.getCategory=async (req, res, next)=>{
 
-exports.getCategory=(req, res)=>{
-  const{gender} = req.params;
+  const categoryURL= `${api.urlBase}/categories/parent/${req.params.gender}?secretKey=${api.key}`;
 
-  const categoriesUrl= `${api.urlBase}/categories/${gender}?secretKey=${api.key}`;
-  const genderSubcatUrl= `${api.urlBase}/categories/parent/${gender}?secretKey=${api.key}`;
-
-  const genderSubcat = [];
-
-  axios.get(genderSubcatUrl).then((response)=>{
-    const {data}=response;
-    console.dir(data);
+  const categories=[];
+  await axios.get(categoryURL).then((response)=>{
+    const {data} = response
     data.forEach((subcategory)=>{
-      genderSubcat.push(subcategory);
+      categories.push(subcategory);
+
     })
-    
+    res.locals.categories=categories;
   }).catch((err)=>{
     console.error(err.message);
   })
-  
-  axios.get(categoriesUrl).then((response)=>{
-    const {data}=response
-    const genderObject=new Category(data.id, data.name, data.image, data.page_title, data.page_description, genderSubcat)
-    res.render('index', {genderCategory: genderObject});
-    
-  }).catch((err)=>{
-    console.error(err.message);
-  })
+  console.log(req.params.gender);
+  next()
 }
-//from home redirect the user to /women clothing or / mens-clothing like the clicked buttons 
-// with each object in the response I need to create a category object and to display it in the home page menu
+// get the gender for the subcategories
+// each gender has many subcategories
+  // to get the subcategories i need to make the api call 
 
-//1  to obtain the gender subcategories I need to make another api call to :
-// https://osf-digital-backend-academy.herokuapp.com/api/categories/parent/womens?secretKey=$2a$08$KNVmMX6n2LISN4D8I9QqOesTpa/8bSyapIvGSxldG3LLW6LSFXqm.
-
-// 2: each obtained object needs to be passed to the subcategories 
-
-
-// const shirts = new Category(123,'name', 'image', 'title', 'description', 'subcategories', 'parent_category' );
-
-// console.dir(shirts);
-// category.id
+  // i have the subcategories -> I need to pass it to the index template - using the re.locals
+  // I have a list of subcategories- means I need to iterate through it => add it to an array
+  // constructor(image, id, name, description, title, parent_category, products)
+  // limitation: I cannot use the response bc it won't execute the category controller anymore
+  // display the gender subcategories in the subcategory section 
+  // 
