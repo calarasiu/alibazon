@@ -4,3 +4,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.image{
+  background-size:cover; 
+  background-repeat: no-repeat; 
+  width: 789px;
+  height: 136px;
+}
+
+

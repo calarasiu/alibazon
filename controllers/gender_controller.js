@@ -19,7 +19,7 @@ exports.getGenderAttributes=(req, res)=>{
     const {data}=response
     const genderObject=new Category(data.id, data.name, data.image, data.page_title, data.page_description, categories);
     res.render('index', {genderCategory: genderObject});
-    
+    console.dir(genderObject);
   }).catch((err)=>{
     console.error(err.message);
   })
