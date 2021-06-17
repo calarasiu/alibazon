@@ -2,5 +2,8 @@ extends layout
 
 block content
   each subcategory in subcategories  
-    a(href=`/categories/${subcategory.parent_category_id}/${subcategory.name.toLowerCase()}`)=subcategory.name
+    h2=subcategory.name
+    br
+    div.image(style=`background-image: url(/images/categories/${subcategory.id}.jpg);`)
     p=subcategory.page_description
+    a(href=`/categories/${subcategory.parent_category_id}/${subcategory.name.toLowerCase()}`) View products

@@ -2,9 +2,12 @@ extends layout
 
 block content
 
-  h2=genderCategory.title
+  h2.title=genderCategory.title
   p=genderCategory.description 
-  each subcategory in genderCategory.subcategories  
-    a(href=`/categories/${subcategory.parent_category_id}/${subcategory.name.toLowerCase()}`)=subcategory.name
-    p=subcategory.page_description
+  each category in genderCategory.subcategories  
+    a(href=`/categories/${category.parent_category_id}/${category.name.toLowerCase()}`)=category.name
+    br
+    div.image(style=`background-image: url(/images/categories/${category.id}.jpg);`)
+    p=category.page_description
+    
   
