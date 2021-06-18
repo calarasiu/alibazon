@@ -13,7 +13,6 @@ exports.getCategory=async (req, res, next)=>{
     const {data} = response
     data.forEach((subcategory)=>{
       categories.push(subcategory);
-
     })
     res.locals.categories=categories;
   }).catch((err)=>{

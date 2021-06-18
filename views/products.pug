@@ -9,4 +9,5 @@ block content
     if(product.currency == "USD")
       p=`Price: $ ${product.price}`  
     else 
-      p=`Price: ${product.price} ${product.currency} ` 
+      p=`Price: ${product.price} ${product.currency} `  
+    a(href=`/products/${product.primary_category_id}/${product.id}`) View product details

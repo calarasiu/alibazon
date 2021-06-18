@@ -11,4 +11,11 @@ body {
   height: 136px;
 }
 
+.productImage{
+  background-size:cover; 
+  background-repeat: no-repeat; 
+  width:220px;
+  height:350px;
+}
+
 
