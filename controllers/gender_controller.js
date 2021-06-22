@@ -12,14 +12,12 @@ exports.getGender=(req, res)=>{
 exports.getGenderAttributes=(req, res)=>{
   const{gender} = req.params;
   const categories = res.locals.categories;
-  console.log('category_controller');
-  console.dir(categories);
   const categoriesUrl= `${api.urlBase}/categories/${gender}?secretKey=${api.key}`;
   axios.get(categoriesUrl).then((response)=>{
     const {data}=response
     const genderObject=new Category(data.id, data.name, data.image, data.page_title, data.page_description, categories);
-    res.render('index', {genderCategory: genderObject});
-    console.dir(genderObject);
+    res.render('categories', {genderCategory: genderObject});
+    
   }).catch((err)=>{
     console.error(err.message);
   })

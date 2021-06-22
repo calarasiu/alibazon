@@ -1,13 +1,18 @@
 extends layout
 
 block content
-  each product in products   
-    h2=product.name
-    br
-    div.productImage(style=`background-image: url(/images/${product.images.link});`)
-    p=product.page_description
-    if(product.currency == "USD")
-      p=`Price: $ ${product.price}`  
-    else 
-      p=`Price: ${product.price} ${product.currency} `  
-    a(href=`/products/${product.primary_category_id}/${product.id}`) View product details
+  .products.row.my-5
+    each product in products 
+      .product.my-5.col-lg-6.col-sm-12 
+        h2.h-25=product.name
+        .product-card.row  
+          div.col-lg-4.col-sm-12.productImage(style=`background-image: url(/images/${product.images.link});`)
+          .productDescription.col-lg-8.col-xs-12
+            p=product.page_description
+            .d-flex.justify-content-between
+              if(product.currency == "USD")
+                p=`Price: $ ${product.price}`  
+              else 
+                p=`Price: ${product.price} ${product.currency} `  
+              a.btn.btn-outline-secondary(href=`/products/${product.primary_category_id}/${product.id}`) View product details
+      

@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .gender-description.my-5
+    h2.title.mb-3=genderCategory.title
+    p=genderCategory.description 
+  each category in genderCategory.subcategories  
+    .category.my-5.py-3.border-bottom.border-dark
+      h2.margins=category.name
+      div.margins.image.mx-auto(style=`background-image: url(/images/categories/${category.id}.jpg);`)
+      p.margins=category.page_description
+      a.margins.btn.btn-outline-secondary(href=`/categories/${category.parent_category_id}/${category.name.toLowerCase()}`) View details
+
+    
+
+
+  
+    
+  

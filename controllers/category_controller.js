@@ -2,8 +2,6 @@ const api = require('../api');
 
 const axios = require('axios');
 
-const Subcategory = require('../models/subcategory');
-
 exports.getCategory=async (req, res, next)=>{
 
   const categoryURL= `${api.urlBase}/categories/parent/${req.params.gender}?secretKey=${api.key}`;
@@ -18,7 +16,6 @@ exports.getCategory=async (req, res, next)=>{
   }).catch((err)=>{
     console.error(err.message);
   })
-  console.log(req.params.gender);
   next()
 }
 // get the gender for the subcategories

@@ -1,12 +1,13 @@
 extends layout
 
 block content
-  each product in products   
-    h2=product.name
-    br
-    div.productImage(style=`background-image: url(/images/${product.images.link});`)
-    p=product.page_description
-    if(product.currency == "USD")
-      p=`Price: $ ${product.price}`  
-    else 
-      p=`Price: ${product.price} ${product.currency} ` 
+  .row.justify-content-center.align-items-center
+    each product in products   
+      .productImageDetail.col-4(style=`background-image: url(/images/${product.images.link});`)
+      .description.col-8
+        h2=product.name
+        p=product.page_description
+        if(product.currency == "USD")
+          p=`Price: $ ${product.price}`  
+        else 
+          p=`Price: ${product.price} ${product.currency} ` 

@@ -1,8 +1,10 @@
 header 
-  .header 
-    h1 Alibazon 
-    .categories 
-      a(href='/categories/mens') Men
-      a(href='/categories/womens') Women
+  nav.navbar.navbar-light.bg-light.py-4.mb-4.border-bottom.border-dark
+    .container
+      a.navbar-brand(href='/') Alibazon 
+      .categories.d-flex.justify-content-lg-between 
+        a.btn.btn-outline-secondary(href='/categories/mens', role='button') Men
+        a.btn.btn-outline-secondary(href='/categories/womens', role='button') Women
+      
 
   

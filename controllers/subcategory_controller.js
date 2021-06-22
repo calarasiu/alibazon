@@ -7,10 +7,7 @@ const axios = require('axios');
 
 exports.getSubcategory=async (req, res)=>{
   const {gender}= req.params;
-  console.log(gender);
   const {subcategory}= req.params;
-  console.log(subcategory);
-
   const subcategoriesURL= `${api.urlBase}/categories/parent/${gender}-${subcategory}?secretKey=${api.key}`;
 
   const subcategories=[]
