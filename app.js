@@ -6,6 +6,7 @@ let logger = require('morgan');
 let sassMiddleware = require('node-sass-middleware')
 
 let indexRouter = require('./routes/index');
+let breadcrumbs = require('./public/javascripts/breadcrumbs');
 
 let app = express();
 
@@ -30,6 +31,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
+
+app.use((req, res, next) => {
+  res.locals.url = req.originalUrl;
+  next();
+});
+
+app.use(function(req, res, next) {
+  req.breadcrumbs = breadcrumbs.get_breadcrumbs(req.originalUrl);
+  next();
+});
 
 app.use('/', indexRouter);
 

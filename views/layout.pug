@@ -5,9 +5,17 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="stylesheet" href="/css/bootstrap.min.css")
   body
-    include includes/header.pug
+    include includes/_header.pug
+    if breadcrumbs
+      nav(aria-label='breadcrumb')
+        ol(class="breadcrumb")
+          each crumb, index in breadcrumbs
+            if index == breadcrumbs.length - 1
+              li(class='breadcrumb-item present' aria-current='page') #{crumb.name}
+            else
+              li(class='breadcrumb-item') #[a(href=crumb.url) #{crumb.name}]
     .container
       block content
-    include includes/footer.pug
+    include includes/_footer.pug
     script(src="/js/jquery.min.js")
     script(src="/js/bootstrap.min.js")

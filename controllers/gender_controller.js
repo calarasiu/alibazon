@@ -16,7 +16,10 @@ exports.getGenderAttributes=(req, res)=>{
   axios.get(categoriesUrl).then((response)=>{
     const {data}=response
     const genderObject=new Category(data.id, data.name, data.image, data.page_title, data.page_description, categories);
-    res.render('categories', {genderCategory: genderObject});
+    res.render('categories', {
+      genderCategory: genderObject,
+      breadcrumbs: req.breadcrumbs,
+    });
     
   }).catch((err)=>{
     console.error(err.message);
