@@ -4,7 +4,7 @@ const api = require('../api');
 const axios = require('axios');
 
 exports.getProducts=async (req, res)=>{
-  
+  console.log(req.params.subcategory_id);
   const productsURL= `${api.urlBase}//products/product_search?primary_category_id=${req.params.subcategory_id}&secretKey=${api.key}`;
   // /products/product_search?primary_category_id=womens-clothing-tops&secretKey=<secretKey>​
   
@@ -24,7 +24,10 @@ exports.getProducts=async (req, res)=>{
       })
     })
     console.dir(products);
-    res.render('products',{products});
+    res.render('products',{
+      products,
+      breadcrumbs: req.breadcrumbs,
+    });
   }).catch((err)=>{
     console.error(err.message);
   });
@@ -48,7 +51,10 @@ exports.getProduct=async (req,res)=>{
         };
       })
     })
-    res.render('product',{products});
+    res.render('product',{
+      products,
+      breadcrumbs: req.breadcrumbs  
+    });
   }).catch((err)=>{
     console.error(err.message);
   });

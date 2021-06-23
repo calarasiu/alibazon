@@ -36,12 +36,16 @@ footer>p{
 .productImageDetail{
   background-size:contain; 
   background-repeat: no-repeat; 
-  width:350px;
-  height:350px;
+  width:400px;
+  height:400px;
 }
 
 .margins{
   margin-bottom: 25px;
+}
+
+.active{
+  background-color: blue !important
 }
 
 
