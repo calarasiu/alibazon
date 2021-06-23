@@ -8,11 +8,11 @@ const product = require('../controllers/product_controller');
 
 /* GET home page. */
 router.get('/', gender.getGender);
-router.use('/categories/:gender', category.getCategory);
-router.get('/categories/:gender', gender.getGenderAttributes);
-router.get('/categories/:gender/:subcategory', subcategory.getSubcategory);
-router.get('/products/:subcategory_id', product.getProducts);
-router.get('/products/:primary_category_id/:id', product.getProduct);
+router.use('/:gender', category.getCategory);
+router.get('/:gender', gender.getGenderAttributes);
+router.get('/:gender/:subcategory', subcategory.getSubcategory);
+router.get('/:gender/:subcategory/:subcategory_id', product.getProducts);
+router.get('/:gender/:subcategory/:subcategory_id/:product_name', product.getProduct);
 
 
 module.exports = router;
