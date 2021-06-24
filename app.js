@@ -1,5 +1,6 @@
 let createError = require('http-errors');
 let express = require('express');
+let flash = require('connect-flash');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
@@ -9,6 +10,7 @@ let indexRouter = require('./routes/index');
 let breadcrumbs = require('./public/javascripts/breadcrumbs');
 
 let app = express();
+app.use(flash());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
