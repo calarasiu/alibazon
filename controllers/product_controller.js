@@ -4,7 +4,9 @@ const api = require('../api');
 const axios = require('axios');
 
 exports.getProducts=async (req, res)=>{
-  const productsURL= `${api.urlBase}/products/product_search?primary_category_id=${req.params.subcategory_id}&secretKey=${api.key}`;
+  console.log(req.params.subcategory_id);
+  const productsURL= `${api.urlBase}//products/product_search?primary_category_id=${req.params.subcategory_id}&secretKey=${api.key}`;
+  // /products/product_search?primary_category_id=womens-clothing-tops&secretKey=<secretKey>​
   
   const products=[];
   // const images=[];
@@ -33,7 +35,7 @@ exports.getProducts=async (req, res)=>{
 
 exports.getProduct=async (req,res)=>{
   
-  const productURL= `${api.urlBase}//products/product_search?id=${req.query.id}&secretKey=${api.key}`;
+  const productURL= `${api.urlBase}//products/product_search?id=${req.params.id}&secretKey=${api.key}`;
 
   await axios.get(productURL).then((response)=>{
     const {data} = response;
