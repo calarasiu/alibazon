@@ -6,7 +6,6 @@ const axios = require('axios');
 exports.getProducts=async (req, res)=>{
   const productsURL= `${api.urlBase}/products/product_search?primary_category_id=${req.params.subcategory_id}&secretKey=${api.key}`;
   
-  console.dir(req.params);
   const products=[];
   // const images=[];
   await axios.get(productsURL).then((response)=>{
@@ -22,7 +21,7 @@ exports.getProducts=async (req, res)=>{
         };
       })
     })
-    console.dir(products);
+
     res.render('products',{
       products,
       breadcrumbs: req.breadcrumbs,
@@ -37,8 +36,7 @@ exports.getProduct=async (req,res)=>{
   const productURL= `${api.urlBase}//products/product_search?id=${req.query.id}&secretKey=${api.key}`;
 
   await axios.get(productURL).then((response)=>{
-    const {data} = response
-    console.dir(data);
+    const {data} = response;
     const products=[]
     data.forEach((product)=>{
       products.push(product);

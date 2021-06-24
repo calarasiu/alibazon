@@ -10,7 +10,7 @@ for (let i = 0; i < btns.length; i++) {
     if (current.length > 0) {
       current[0].className = current[0].className.replace(" active", "");
     }
-    console.log('hello', url);
+    
    event.currentTarget.className += " active";
   });
 }

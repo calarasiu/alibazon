@@ -16,7 +16,6 @@ exports.getSubcategory=async (req, res)=>{
     data.forEach(subcategory =>{
       subcategories.push(subcategory);
     })
-    console.dir(subcategories);
     res.render('subcategories', {
       subcategories:subcategories,
       breadcrumbs: req.breadcrumbs,
