@@ -23,7 +23,7 @@ exports.getProducts=async (req, res)=>{
         };
       })
     })
-    console.dir(products);
+
     res.render('products',{
       products,
       breadcrumbs: req.breadcrumbs,
@@ -38,8 +38,7 @@ exports.getProduct=async (req,res)=>{
   const productURL= `${api.urlBase}//products/product_search?id=${req.params.id}&secretKey=${api.key}`;
 
   await axios.get(productURL).then((response)=>{
-    const {data} = response
-    console.dir(data);
+    const {data} = response;
     const products=[]
     data.forEach((product)=>{
       products.push(product);
