@@ -25,7 +25,7 @@ exports.getProducts=async (req, res)=>{
 
     res.render('products',{
       products,
-      breadcrumbs: req.breadcrumbs,
+      breadcrumbs: res.locals.breadcrumbs,
     });
   }).catch((err)=>{
     console.error(err.message);
@@ -42,45 +42,61 @@ exports.getProduct=async (req,res)=>{
     data.forEach((product)=>{
       products.push(product);
       product.image_groups.forEach((image)=>{
+        // console.dir(image);
         if(image.view_type=='large'){
           image.images.forEach((image)=>{
             product.images=image;
           });
         };
       })
+      // console.dir(product);
+      // product.variation_attributes.forEach((variant)=>{
+      //   console.log(typeof variant);
+      // })
     })
     res.render('product',{
       products,
-      breadcrumbs: req.breadcrumbs  
+      breadcrumbs: res.locals.breadcrumbs  
     });
   }).catch((err)=>{
     console.error(err.message);
   });
 }
 
-// name: 'Floral Long Sleeve Roll Up Shirt'
-// page_description:
-// price: 64
-// currency: 'USD'
-// id: '25565189'
-// image_groups:
-
 // {
-//   images: [
-//     {
-//       alt: 'Classic Wrap, , small',
-//       link: 'products/small/PG.W20766.LEAOLXX.PZ.jpg',
-//       title: 'Classic Wrap, '
-//     }
-//   ],
-//   view_type: 'small'
+//   variation_values: { color: 'JJZ01XX', size: '9LG' },
+//   price: 64,
+//   product_id: '701643540013',
+//   orderable: true
+// }
+// {
+//   variation_values: { color: 'JJZ01XX', size: '9SM' },
+//   price: 64,
+//   product_id: '701643540037',
+//   orderable: true
+// }
+// {
+//   variation_values: { color: 'JJZ01XX', size: '9MD' },
+//   price: 64,
+//   product_id: '701643540020',
+//   orderable: true
+// }
+// {
+//   variation_values: { color: 'JJZ01XX', size: '9XL' },
+//   price: 64,
+//   product_id: '701643540044',
+//   orderable: true
 // }
 
-// .images
-// [
-//   {
-//     alt: 'Classic Wrap, Black, large',
-//     link: 'products/large/PG.W20766.BLACKXX.PZ.jpg',
-//     title: 'Classic Wrap, Black'
-//   }
-// ]
+
+
+// product.variation_attributes={
+//   values: [
+//     { orderable: true, name: 'S', value: '9SM' },
+//     { orderable: true, name: 'M', value: '9MD' },
+//     { orderable: true, name: 'L', value: '9LG' },
+//     { orderable: true, name: 'XL', value: '9XL' }
+//   ],
+//   id: 'size',
+//   name: 'Size'
+// }

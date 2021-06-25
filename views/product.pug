@@ -11,3 +11,6 @@ block content
           p=`Price: $ ${product.price}`  
         else 
           p=`Price: ${product.price} ${product.currency} ` 
+        each variant in product.variants 
+          p=Object.keys(variant.variation_values) 
+        //- p=product.variants.length

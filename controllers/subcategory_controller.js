@@ -18,7 +18,7 @@ exports.getSubcategory=async (req, res)=>{
     })
     res.render('subcategories', {
       subcategories:subcategories,
-      breadcrumbs: req.breadcrumbs,
+      breadcrumbs: res.locals.breadcrumbs,
     });
   }).catch((err)=>{
     console.error(err.message);
