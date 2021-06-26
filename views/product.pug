@@ -3,7 +3,10 @@ extends layout
 block content
   .row.justify-content-center.align-items-center
     each product in products   
-      .productImageDetail.col-4(style=`background-image: url(/images/${product.images.link});`)
+      each image in product.image_groups
+        if image.view_type === 'large'
+          each imageAttributes, index in image.images
+            .productImageDetail.col-4(style=`background-image: url(/images/${imageAttributes.link});`)
       .description.col-8
         h2=product.name
         p=product.page_description
@@ -11,6 +14,5 @@ block content
           p=`Price: $ ${product.price}`  
         else 
           p=`Price: ${product.price} ${product.currency} ` 
-        each variant in product.variants 
-          p=Object.keys(variant.variation_values) 
-        //- p=product.variants.length
+       
+

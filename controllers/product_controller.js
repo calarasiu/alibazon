@@ -35,25 +35,30 @@ exports.getProducts=async (req, res)=>{
 exports.getProduct=async (req,res)=>{
   
   const productURL= `${api.urlBase}//products/product_search?id=${req.query.id}&secretKey=${api.key}`;
-
   await axios.get(productURL).then((response)=>{
     const {data} = response;
     const products=[]
     data.forEach((product)=>{
       products.push(product);
-      product.image_groups.forEach((image)=>{
-        // console.dir(image);
-        if(image.view_type=='large'){
-          image.images.forEach((image)=>{
-            product.images=image;
-          });
-        };
-      })
-      // console.dir(product);
-      // product.variation_attributes.forEach((variant)=>{
-      //   console.log(typeof variant);
+
+      const productImages= product.image_groups.filter(images=>images.view_type=== 'large');
+      console.log(productImages.length)
+      // console.dir(productImages);
+
+      // productImages.forEach((image)=>{
+        
+      //     // console.dir(image);
+      //     // console.log("another large image");
+      //     product.images=image;
+        
       // })
+      // console.dir( product.images);
+      // console.dir(product);
+      product.variation_attributes.forEach((variant)=>{
+        // console.dir(variant);
+      })
     })
+    console.dir(products)
     res.render('product',{
       products,
       breadcrumbs: res.locals.breadcrumbs  
