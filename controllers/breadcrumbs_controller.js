@@ -13,7 +13,7 @@ exports.get_breadcrumbs = function(req, res, next) {
     urlPieces.forEach((piece)=>{
       let name = piece.name;
       if(name.includes('%20') || name.includes('?')){
-        name=name.replace('%20','-');
+        name=name.split('%20').join('-');
         piece.name=name.slice(0, name.indexOf('?'))
       }
     })

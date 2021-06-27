@@ -35,15 +35,17 @@ exports.getProducts=async (req, res)=>{
 exports.getProduct=async (req,res)=>{
   
   const productURL= `${api.urlBase}//products/product_search?id=${req.query.id}&secretKey=${api.key}`;
+  console.log(req.query.id);
   await axios.get(productURL).then((response)=>{
     const {data} = response;
     const products=[]
     data.forEach((product)=>{
       products.push(product);
-
+      // console.dir(product.image_groups)
+      
       const productImages= product.image_groups.filter(images=>images.view_type=== 'large');
       console.log(productImages.length)
-      // console.dir(productImages);
+      console.dir(productImages);
 
       // productImages.forEach((image)=>{
         
@@ -58,7 +60,6 @@ exports.getProduct=async (req,res)=>{
         // console.dir(variant);
       })
     })
-    console.dir(products)
     res.render('product',{
       products,
       breadcrumbs: res.locals.breadcrumbs  
