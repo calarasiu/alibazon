@@ -3,7 +3,26 @@ extends layout
 block content
   .row.justify-content-center.align-items-center
     each product in products   
-      .productImageDetail.col-4(style=`background-image: url(/images/${product.images.link});`)
+      #carouselExampleControls.carousel.productImageDetail.slide.col-4(data-bs-ride='carousel')
+        .carousel-inner
+          each image in product.image_groups
+            if image.view_type === 'large' && image.variation_value
+                each imageAttributes, index in image.images
+                  if index == 0
+                    .carousel-item.active
+                      img.d-block.w-100(src=`/images/${imageAttributes.link}`, alt=`${imageAttributes.alt}`)
+                //- else    
+                //-   .carousel-item
+                //-     img.d-block.w-100(src=`/images/${imageAttributes.link}`, alt=`${imageAttributes.alt}`)
+          //- button.carousel-control-prev(type='button', data-bs-target='#carouselExampleControls', data-bs-slide='prev')
+          //-   span.carousel-control-prev-icon(aria-hidden='true')
+          //-   span.visually-hidden Previous
+          //- button.carousel-control-next(type='button', data-bs-target='#carouselExampleControls', data-bs-slide='next')
+          //-   span.carousel-control-next-icon(aria-hidden='true')
+          //-   span.visually-hidden Next
+
+          //- each imageAttributes, index in image.images
+            .productImageDetail.col-4(style=`background-image: url(/images/${imageAttributes.link});`)
       .description.col-8
         h2=product.name
         p=product.page_description
@@ -11,3 +30,18 @@ block content
           p=`Price: $ ${product.price}`  
         else 
           p=`Price: ${product.price} ${product.currency} ` 
+        p.fs-4 Product variants  
+        each variant in product.variation_attributes 
+          p.fs-4 #{variant.id}:
+          each colorValue in variant.values
+            span.badge.bg-secondary.mx-1.fs-5 #{colorValue.name}
+
+
+          //- if variant.id === 'color'
+
+            //- label(for="color") #{variant.name}
+            //- select(name="color").colorForm
+              option(value=colorValue.value) #{colorValue.name}
+                
+       
+

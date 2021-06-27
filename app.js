@@ -7,7 +7,6 @@ let logger = require('morgan');
 let sassMiddleware = require('node-sass-middleware')
 
 let indexRouter = require('./routes/index');
-let breadcrumbs = require('./public/javascripts/breadcrumbs');
 
 let app = express();
 app.use(flash());
@@ -34,13 +33,9 @@ app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); /
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 
+// get the url to be used in the header view component, to decide witch gender btn to highlight
 app.use((req, res, next) => {
   res.locals.url = req.originalUrl;
-  next();
-});
-
-app.use(function(req, res, next) {
-  req.breadcrumbs = breadcrumbs.get_breadcrumbs(req.originalUrl);
   next();
 });
 
