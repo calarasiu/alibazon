@@ -11,6 +11,7 @@ exports.getGender=(req, res)=>{
 
 exports.getGenderAttributes=(req, res)=>{
   const{gender} = req.params;
+  console.log(gender);
   const categories = res.locals.categories;
   const categoriesUrl= `${api.urlBase}/categories/${gender}?secretKey=${api.key}`;
   axios.get(categoriesUrl).then((response)=>{

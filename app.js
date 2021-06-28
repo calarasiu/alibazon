@@ -6,7 +6,7 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let sassMiddleware = require('node-sass-middleware')
 
-let indexRouter = require('./routes/index');
+let genderCategories = require('./routes/genderCategories');
 
 let app = express();
 app.use(flash());
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', indexRouter);
+app.use('/', genderCategories);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
