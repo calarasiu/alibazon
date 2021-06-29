@@ -6,7 +6,7 @@ block content
       #carouselExampleControls.carousel.productImageDetail.slide.col-4(data-bs-ride='carousel')
         .carousel-inner
           each image in product.image_groups
-            if image.view_type === 'large' && image.variation_value
+            if image.view_type === 'large'
                 each imageAttributes, index in image.images
                   if index == 0
                     .carousel-item.active
@@ -30,11 +30,12 @@ block content
           p=`Price: $ ${product.price}`  
         else 
           p=`Price: ${product.price} ${product.currency} ` 
-        p.fs-4 Product variants  
-        each variant in product.variation_attributes 
-          p.fs-4 #{variant.id}:
-          each colorValue in variant.values
-            span.badge.bg-secondary.mx-1.fs-5 #{colorValue.name}
+        if(product.variation_attributes.length!=0)
+          p.fs-4 Product variants  
+          each variant in product.variation_attributes 
+            p.fs-4 #{variant.id}:
+            each colorValue in variant.values
+              span.badge.bg-secondary.mx-1.fs-5 #{colorValue.name}
 
 
           //- if variant.id === 'color'

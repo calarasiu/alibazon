@@ -1,12 +1,15 @@
-let createError = require('http-errors');
-let express = require('express');
-let flash = require('connect-flash');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
-let sassMiddleware = require('node-sass-middleware')
+const createError = require('http-errors');
+const express = require('express');
+const flash = require('connect-flash');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const sassMiddleware = require('node-sass-middleware')
 
-let indexRouter = require('./routes/index');
+const genderCategories = require('./routes/genderCategories_route');
+const subcategories = require('./routes/subcategories_route');
+const products = require('./routes/products_route');
+const product = require('./routes/product_route');
 
 let app = express();
 app.use(flash());
@@ -39,7 +42,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', indexRouter);
+app.use('/', genderCategories);
+app.use('/', subcategories);
+app.use('/', products);
+app.use('/', product);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
