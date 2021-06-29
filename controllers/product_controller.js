@@ -13,7 +13,7 @@ exports.getProducts=async (req, res)=>{
     const {data} = response
     data.forEach((product)=>{
       products.push(product);
-
+      
       product.image_groups.forEach((image)=>{
         if(image.view_type=='large'){
           image.images.forEach((image)=>{
@@ -22,11 +22,12 @@ exports.getProducts=async (req, res)=>{
         };
       })
     })
-
+    
     res.render('products',{
       products,
       breadcrumbs: res.locals.breadcrumbs,
     });
+    // console.dir(req);
   }).catch((err)=>{
     console.error(err.message);
   });
@@ -41,31 +42,14 @@ exports.getProduct=async (req,res)=>{
     const products=[]
     data.forEach((product)=>{
       products.push(product);
-      // console.dir(product.image_groups)
-      
-      const productImages= product.image_groups.filter(images=>images.view_type=== 'large');
-      console.log(productImages.length)
-      console.dir(productImages);
-
-      // productImages.forEach((image)=>{
-        
-      //     // console.dir(image);
-      //     // console.log("another large image");
-      //     product.images=image;
-        
-      // })
-      // console.dir( product.images);
-      // console.dir(product);
-      product.variation_attributes.forEach((variant)=>{
-        // console.dir(variant);
+   
       })
-    })
-    res.render('product',{
-      products,
-      breadcrumbs: res.locals.breadcrumbs  
-    });
-  }).catch((err)=>{
-    console.error(err.message);
+      res.render('product',{
+        products,
+        breadcrumbs: res.locals.breadcrumbs  
+      });
+    }).catch((err)=>{
+      console.error(err.message);
   });
 }
 

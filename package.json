@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha --timeout 10000"
+    "test": "node_modules/mocha/bin/mocha --timeout 10000"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -21,6 +21,10 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.0.1",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
   }
 }
