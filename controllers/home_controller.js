@@ -17,6 +17,5 @@ exports.getHomePage= async (req, res)=>{
       console.error(err.message);
     })
   }
-  console.dir(gendersAttributes);
   res.render(`home`, {gendersAttributes});
 }

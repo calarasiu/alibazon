@@ -27,7 +27,6 @@ exports.getProducts=async (req, res)=>{
       products,
       breadcrumbs: res.locals.breadcrumbs,
     });
-    // console.dir(req);
   }).catch((err)=>{
     console.error(err.message);
   });
