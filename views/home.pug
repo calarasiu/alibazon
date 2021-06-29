@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .row.images.justify-content-around.align-items-center
+    each gender in gendersAttributes
+      .card.col-lg-6.col-sm-12.homeImage(style=`width: 35rem; background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url(/images/${gender.id}.jpg);`)
+        .card-body.homeText
+          h6.card-subtitle.mb-2.fw-bolder.fs-3.text-white=gender.page_title 
+          a.card-link.btn.btn-light(href=`/${gender.id}`) Shop now
+          

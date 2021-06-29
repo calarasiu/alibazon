@@ -4,10 +4,10 @@ const axios = require('axios');
 
 const Category = require('../models/category');
 
-exports.getGender=(req, res)=>{
-  const defaultGender = 'womens'
-  res.redirect(`/categories/${defaultGender}`)
-}
+// exports.getGender=(req, res)=>{
+//   const defaultGender = 'womens'
+//   res.redirect(`/categories/${defaultGender}`)
+// }
 
 exports.getGenderAttributes=(req, res)=>{
   const{gender} = req.params;

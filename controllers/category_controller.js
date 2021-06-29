@@ -9,8 +9,9 @@ exports.getCategory=async (req, res, next)=>{
   const categories=[];
   await axios.get(categoryURL).then((response)=>{
     const {data} = response
-    data.forEach((subcategory)=>{
-      categories.push(subcategory);
+    data.forEach((category)=>{
+      console.dir(category);
+      categories.push(category);
     })
     res.locals.categories=categories;
   }).catch((err)=>{

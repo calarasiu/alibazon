@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware')
 
+const home = require('./routes/home_route');
 const genderCategories = require('./routes/genderCategories_route');
 const subcategories = require('./routes/subcategories_route');
 const products = require('./routes/products_route');
@@ -42,6 +43,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/', home);
 app.use('/', genderCategories);
 app.use('/', subcategories);
 app.use('/', products);
