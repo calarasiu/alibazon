@@ -1,5 +1,3 @@
-const api = require('../api');
-
 const axios = require('axios');
 
 exports.getHomePage= async (req, res)=>{
@@ -7,7 +5,7 @@ exports.getHomePage= async (req, res)=>{
 
   const gendersAttributes = [];
   for (const gender of genders){
-    const url = `${api.urlBase}/categories/${gender}?secretKey=${api.key}`;
+    const url = `${process.env.URL_BASE}/categories/${gender}?secretKey=${process.env.API_KEY}`;
 
     await axios.get(url).then((response)=>{
       const {data} = response;

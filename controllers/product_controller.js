@@ -1,10 +1,7 @@
-// from the index page - on click on the category -> make the api call for that category to get the products data
-const api = require('../api');
-
 const axios = require('axios');
 
 exports.getProducts=async (req, res)=>{
-  const productsURL= `${api.urlBase}/products/product_search?primary_category_id=${req.params.subcategory_id}&secretKey=${api.key}`;
+  const productsURL= `${process.env.URL_BASE}/products/product_search?primary_category_id=${req.params.subcategory_id}&secretKey=${process.env.API_KEY}`;
   
   console.dir(req.params);
   const products=[];
@@ -34,7 +31,7 @@ exports.getProducts=async (req, res)=>{
 
 exports.getProduct=async (req,res)=>{
   
-  const productURL= `${api.urlBase}//products/product_search?id=${req.query.id}&secretKey=${api.key}`;
+  const productURL= `${process.env.URL_BASE}//products/product_search?id=${req.query.id}&secretKey=${process.env.API_KEY}`;
   console.log(req.query.id);
   await axios.get(productURL).then((response)=>{
     const {data} = response;

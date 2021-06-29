@@ -1,14 +1,9 @@
-// get the products subcategory from 
-// const url = `https://osf-digital-backend-academy.herokuapp.com/api/categories/parent/${subcategory_id}?secretKey=$2a$08$KNVmMX6n2LISN4D8I9QqOesTpa/8bSyapIvGSxldG3LLW6LSFXqm.`
-
-const api = require('../api');
-
 const axios = require('axios');
 
 exports.getSubcategory=async (req, res)=>{
   const {gender}= req.params;
   const {subcategory}= req.params;
-  const subcategoriesURL= `${api.urlBase}/categories/parent/${gender}-${subcategory}?secretKey=${api.key}`;
+  const subcategoriesURL= `${process.env.URL_BASE}/categories/parent/${gender}-${subcategory}?secretKey=${process.env.API_KEY}`;
 
   const subcategories=[]
   await axios.get(subcategoriesURL).then((response)=>{

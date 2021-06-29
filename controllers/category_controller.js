@@ -1,10 +1,8 @@
-const api = require('../api');
-
 const axios = require('axios');
 
 exports.getCategory=async (req, res, next)=>{
 
-  const categoryURL= `${api.urlBase}/categories/parent/${req.params.gender}?secretKey=${api.key}`;
+  const categoryURL= `${process.env.URL_BASE}/categories/parent/${req.params.gender}?secretKey=${process.env.API_KEY}`;
 
   const categories=[];
   await axios.get(categoryURL).then((response)=>{

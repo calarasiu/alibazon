@@ -1,0 +1,34 @@
+# Query: api.key
+# Flags: WordMatch
+# ContextLines: 1
+
+6 results - 5 files
+
+controllers/category_controller.js:
+  6  
+  7:   const categoryURL= `${api.urlBase}/categories/parent/${req.params.gender}?secretKey=${process.env.API_KEY}`;
+  8  
+
+controllers/gender_controller.js:
+   9    const categories = res.locals.categories;
+  10:   const categoriesUrl= `${api.urlBase}/categories/${gender}?secretKey=${process.env.API_KEY}`;
+  11    axios.get(categoriesUrl).then((response)=>{
+
+controllers/home_controller.js:
+   9    for (const gender of genders){
+  10:     const url = `${api.urlBase}/categories/${gender}?secretKey=${process.env.API_KEY}`;
+  11  
+
+controllers/product_controller.js:
+   6  exports.getProducts=async (req, res)=>{
+   7:   const productsURL= `${api.urlBase}/products/product_search?primary_category_id=${req.params.subcategory_id}&secretKey=${process.env.API_KEY}`;
+   8    
+
+  36    
+  37:   const productURL= `${api.urlBase}//products/product_search?id=${req.query.id}&secretKey=${process.env.API_KEY}`;
+  38    console.log(req.query.id);
+
+controllers/subcategory_controller.js:
+  10    const {subcategory}= req.params;
+  11:   const subcategoriesURL= `${api.urlBase}/categories/parent/${gender}-${subcategory}?secretKey=${process.env.API_KEY}`;
+  12  
