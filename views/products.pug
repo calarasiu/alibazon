@@ -9,7 +9,7 @@ block content
           div.col-lg-4.col-sm-12.productImage(style=`background-image: url(/images/${product.images.link});`)
           .productDescription.col-lg-8.col-xs-12
             p=product.page_description
-            .d-flex.justify-content-between
+            .d-table.justify-content-between
               if(product.currency == "USD")
                 p=`Price: $ ${product.price}`  
               else 

@@ -11,7 +11,6 @@ exports.getGenderAttributes=(req, res)=>{
     const genderObject=new Category(data.id, data.name, data.image, data.page_title, data.page_description, categories);
     res.render('categories', {
       genderCategory: genderObject,
-      breadcrumbs: res.locals.breadcrumbs,
     });
     
   }).catch((err)=>{
