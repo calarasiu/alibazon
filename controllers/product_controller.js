@@ -11,14 +11,7 @@ exports.getProducts=async (req, res)=>{
     const {data} = response
     data.forEach((product)=>{
       products.push(product);
-      
-      product.image_groups.forEach((image)=>{
-        if(image.view_type=='large'){
-          image.images.forEach((image)=>{
-            product.images=image;
-          });
-        };
-      })
+    
     })
     
     res.render('products',{
