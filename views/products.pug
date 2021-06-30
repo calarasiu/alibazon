@@ -5,8 +5,11 @@ block content
     each product in products
       .product.my-5.col-lg-6.col-sm-12 
         h2.h-25=product.name
-        .product-card.row  
-          div.col-lg-4.col-sm-12.productImage(style=`background-image: url(/images/${product.images.link});`)
+        .product-card.row 
+          each image, index in product.image_groups
+              if image.view_type === 'large'
+                if index === 0
+                  div.col-lg-4.col-sm-12.productImage(style=`background-image: url(/images/${image.images[0].link});`)
           .productDescription.col-lg-8.col-xs-12
             p=product.page_description
             .d-table.justify-content-between
@@ -15,8 +18,4 @@ block content
               else 
                 p=`Price: ${product.price} ${product.currency} `  
               a.btn.btn-outline-secondary(href=`${url}/${product.name}?id=${product.id}`) view product details
-      //- get the title form the image
-      //- if there are many color variants
-      //- show them in a carousel
-      //- let the user choose the image type
-      //- change the image once the user choose another color 
+

@@ -9,8 +9,8 @@ block content
             if image.view_type === 'large'
                 each imageAttributes, index in image.images
                   if index == 0
-                    .carousel-item.active
-                      img.d-block.w-100(src=`/images/${imageAttributes.link}`, alt=`${imageAttributes.alt}`)
+                    .carousel-item.active.bg-transparent
+                      img.d-block.w-80(src=`/images/${imageAttributes.link}`, alt=`${imageAttributes.alt}`)
                 //- else    
                 //-   .carousel-item
                 //-     img.d-block.w-100(src=`/images/${imageAttributes.link}`, alt=`${imageAttributes.alt}`)
