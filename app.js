@@ -8,6 +8,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware')
+const timeout = require('connect-timeout');
 
 const home = require('./routes/home_route');
 const genderCategories = require('./routes/genderCategories_route');
@@ -45,6 +46,7 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(haltOnTimedout)
 app.use(cookieParser());
 
 app.use(sassMiddleware({
@@ -66,12 +68,14 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(timeout('5s'));
 
 app.use('/', home);
 app.use('/', genderCategories);
 app.use('/', subcategories);
 app.use('/', products);
 app.use('/', product);
+
 
 app.get('/debug-sentry', function mainHandler(req, res) {
   throw new Error("My first Sentry error!");
@@ -84,8 +88,8 @@ app.use(Sentry.Handlers.errorHandler({
       return true;
     }
     return false;
-    },
-  })
+  },
+})
 );
 
 // catch 404 and forward to error handler
@@ -98,10 +102,13 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  
   // render the error page
-  res.status(err.status || 500 || 503);
+  res.status(err.status || 500);
   res.render('error');
 });
 
+function haltOnTimedout (req, res, next) {
+  if (!req.timedout) next()
+}
 module.exports = app;

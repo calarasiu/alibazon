@@ -2,8 +2,7 @@ const axios = require('axios');
 
 exports.getProducts=async (req, res)=>{
   const productsURL= `${process.env.URL_BASE}/products/product_search?primary_category_id=${req.params.subcategory_id}&secretKey=${process.env.API_KEY}`;
-  
-  console.dir(req.params);
+ 
   const products=[];
   const navigation = req.path.split('/')
   navigation.pop();
