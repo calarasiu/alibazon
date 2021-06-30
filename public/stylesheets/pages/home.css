@@ -1,6 +1,6 @@
 .images {
   height: 75vh;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .homeImage {
