@@ -4,6 +4,8 @@ exports.getSubcategory=async (req, res)=>{
   const {gender}= req.params;
   const {subcategory}= req.params;
   const subcategoriesURL= `${process.env.URL_BASE}/categories/parent/${gender}-${subcategory}?secretKey=${process.env.API_KEY}`;
+  const navigation = req.path.split('/')
+  navigation.pop();
 
   const subcategories=[]
   await axios.get(subcategoriesURL).then((response)=>{
@@ -13,7 +15,7 @@ exports.getSubcategory=async (req, res)=>{
     })
     res.render('subcategories', {
       subcategories:subcategories,
-      breadcrumbs: res.locals.breadcrumbs,
+      nav:navigation.join('/')
     });
   }).catch((err)=>{
     console.error(err.message);

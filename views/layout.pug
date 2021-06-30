@@ -6,15 +6,8 @@ html
     link(rel="stylesheet" href="/css/bootstrap.min.css")
   body
     include includes/_header.pug
-    if breadcrumbs
-      nav(aria-label='breadcrumb')
-        ol(class="breadcrumb")
-          each crumb, index in breadcrumbs
-            if index == breadcrumbs.length - 1
-              li(class='breadcrumb-item present' aria-current='page') #{crumb.name}
-            else
-              li(class='breadcrumb-item') #[a(href=crumb.url) #{crumb.name}]
     .container
+      include includes/_breadcrumbs.pug
       block content
     include includes/_footer.pug
     script(src="/js/jquery.min.js")
